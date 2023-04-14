@@ -77,3 +77,86 @@ fetch(apiUrl)
     })
     // Gestion des erreurs éventuelles
     .catch(error => console.error(error));
+
+    
+    
+function fetchData(typeRecherche, tri) {
+
+
+    const tmdb = `https://api.themoviedb.org/3/${typeRecherche}/${tri}?api_key=b2f52ce7ac8c777811346b478862bb0f&language=en-US&page=1`;
+
+    fetch(tmdb)
+        .then(response => response.json())
+        .then(data => {
+            data
+            console.log(data)
+        })
+
+
+
+
+        .catch(error => {
+            console.error(error);
+            console.log(fetchData())
+
+
+        });
+}
+
+
+
+function selector() {
+    const typeRecherche = document.getElementById("select1").value;
+    const tri = document.getElementById("select2").value;
+    fetchData(typeRecherche, tri);
+}
+
+let selecteur = document.querySelectorAll('select');
+
+for (let i = 0; i < selecteur.length; i++) {
+    selecteur[i].addEventListener('input', () => {
+            selector();
+    });
+}
+const select1 = document.getElementById("select1");
+const tv = document.querySelectorAll('.tv');
+const movie = document.querySelectorAll('.movie')
+
+select1.addEventListener("change", () => {
+    if (select1.value === "movie") {
+            tv.forEach(item => item.classList.toggle("filtre"));
+    } else {
+            tv.forEach(item => item.classList.remove("filtre"));
+    }
+    if (select1.value === 'tv') {
+            movie.forEach(item => item.classList.toggle("filtre"));
+    } else {
+            movie.forEach(item => item.classList.remove("filtre"));
+    }
+});
+const moviesList = document.getElementById('movies-list');
+
+function displayMovies(movies) {
+    moviesList.innerHTML = '';
+
+    movies.forEach(movie => {
+            const movieElement = document.createElement('li');
+            movieElement.innerHTML = `<h2>${movie.title}</h2>
+                                <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title} Poster">
+                                <p>${movie.overview}</p>`;
+            moviesList.appendChild(movieElement);
+    });
+}
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
+async function searchMovies(query) {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=b2f52ce7ac8c777811346b478862bb0f&query=${query}`);
+    const data = await response.json();
+
+    if (data.results.length === 0) {
+            moviesList.innerHTML = '<p>No movies found</p>';
+    } else {
+            displayMovies(data.results);
+    }
+
+}
