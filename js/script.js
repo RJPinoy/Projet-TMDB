@@ -1,5 +1,39 @@
 const body = document.querySelector('body');
 
+async function fetchMovieGenre() {
+    const apiUrlGenre = 'https://api.themoviedb.org/3/genre/movie/list?api_key=1ceb28896523547ede423f9a0e59e2f8&language=en-US';
+
+    let genres = [
+        [],
+        []
+    ];
+    
+    await fetch(apiUrlGenre)
+        .then(response => response.json())
+        .then(data => {
+            for(i=0; i < data.genres.length; i++) {
+                genres[0].push(data.genres[i].id)
+                genres[1].push(data.genres[i].name)
+            };
+        })
+        .catch(error => console.error(error));
+
+    return genres;
+}
+
+async function getMovieGenre(movieId) {
+    const genres = await fetchMovieGenre();
+    // console.log(genres);
+    // console.log(genres[0].indexOf(movieId));
+    if(genres[0].indexOf(movieId) >= 0) {
+        console.log( genres[1][genres[0].indexOf(movieId)] )
+        return genres[1][genres[0].indexOf(movieId)];
+    } else {
+        console.log( "error" )
+        return "error"
+    }
+}
+
 const apiUrl = 'https://api.themoviedb.org/3/movie/popular?api_key=1ceb28896523547ede423f9a0e59e2f8&language=en-US&page=1';
 
 fetch(apiUrl)
@@ -36,7 +70,10 @@ fetch(apiUrl)
             dataDiv.appendChild(dataMovieOverview);
             dataMovieOverview.innerHTML = data.results[i].overview;
         }
-        // console.log(data.results[0].poster_path);
+        console.log(data.results);
+        for(i=0; i < data.results[0].genre_ids.length; i++) {
+            getMovieGenre(data.results[0].genre_ids[i]);
+        }
     })
     // Gestion des erreurs éventuelles
     .catch(error => console.error(error));
