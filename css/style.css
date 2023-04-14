@@ -1,24 +1,14 @@
-.container {
+body {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    flex-flow: row wrap;
 }
 
-.film {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    margin: 0 0 50px;
+h2, p {
+    color: white;
+    margin-bottom: 10px;
+    font-family: Poppins, sans-serif;
 }
 
-.film > p {
-    margin: 10px 0 0;
-}
-
-.film img {
-    width: 25%;
-    object-fit: contain;
+h2 {
+    font-size: 2rem;
 }
