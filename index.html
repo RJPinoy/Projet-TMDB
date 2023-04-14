@@ -12,25 +12,27 @@
     </head>
 
     <body>
-           
-        <label for="select1">Type de recherche :</label>
-    <select id="select1">
-        <option value="movie">Films</option>
-        <option value="tv"> Séries TV</option>
-    </select>
-    <br>
-    <label for="select2">Tri :</label>
-    <select id="select2">
-        <option value="popular" class="tv">populaire</option>
-        <option value="top_rated" class="tv">mieux notés</option>
-        <option value="jsp" class="movie">prout</option>
-        <option value="hehe"class='movie'>shhh</option>
-    </select>
-    <form id="search-form">
-        <input type="text" id="search-input" placeholder="Rechercher un film par titre...">
-        <button type="submit">Rechercher</button>
-      </form>
-      <ul id="movies-list"></ul>
+        <nav>
+            <label for="select1">Type de recherche :</label>
+            <select id="select1">
+                <option value="movie">Films</option>
+                <option value="tv"> Séries TV</option>
+            </select>
+            <br>
+            <label for="select2">Tri :</label>
+            <select id="select2">
+                <option value="popular">populaire</option>
+                <option value="top_rated">mieux notés</option>
+                <option value="upcoming" class="movies">upcoming</option>
+                <option value="airing_today" class="tv">TV airing today</option>
+                <option value="on_the_air" class="tv">TV on the air</option>
+            </select>
+            
+            <form id="search-form">
+                <input type="text" id="search-input" placeholder="Rechercher un film par titre...">
+                <button type="submit">Rechercher</button>
+            </form>
+        </nav>
 
         <script src="js/script.js"></script>
     </body>

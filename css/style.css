@@ -2,6 +2,7 @@ body {
     display: flex;
     flex-flow: row wrap;
     overflow-x: hidden;
+    background-color: black;
 }
 
 h2, p {
@@ -12,4 +13,17 @@ h2, p {
 
 h2 {
     font-size: 2rem;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-flow: row wrap;
+    width: 100%;
+    z-index: 999;
+    background-color: rgb(167, 249, 255);
+    height: 100px;
 }
