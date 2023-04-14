@@ -38,15 +38,9 @@
 .front {
     background-size: cover;
     padding: 2rem;
-    font-size: 1.618rem;
-    font-weight: 600;
     overflow: hidden;
 }
-.front:before {
-    display: block;
-    content: "";
-    opacity: 0.25;
-}
+
 .card:hover .front {
     transform: rotateY(180deg);
 }
@@ -56,10 +50,11 @@
 
 .back {
     transform: rotateY(-180deg);
-    padding: 0 2em;
+    padding: 2rem;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    opacity: 0.85;
 }
 
 .back div {
